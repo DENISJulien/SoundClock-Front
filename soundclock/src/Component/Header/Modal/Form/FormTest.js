@@ -1,16 +1,23 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
 import axios from 'axios';
 import './FormLogin.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import './FormLogin.scss';
 
 
-const schema = yup.object({
-    username: yup.string().email().required(),
-    password: yup.string().required(),
+const schema = yup.object().shape({
+    username: 
+      yup
+      .string()
+      .email("Email valide demandé")
+      .required("Email obligatoire"),
+    password: 
+      yup
+      .string()
+      .required(),
   });
 
 
@@ -23,7 +30,11 @@ export default function FormTest() {
 
   const{isSubmitSuccessful} = formState
 
-  const onSubmit = data => console.log(data)
+  const onSubmit = data => {
+
+    axios.post('http://localhost:8080/api/login_check',data )
+    .then((response) => localStorage.setItem("userToken", response.data.token)) 
+    .catch((error) => console.log("reponse NOK", error))}
 
   console.log('hello')
   return (
@@ -35,10 +46,12 @@ export default function FormTest() {
       }}
       noValidate
       autoComplete="off"
+      className = "Form__Login__Box"
     >
-      {isSubmitSuccessful && <div className="alert alert-success"> Merci pour votre inscription </div>}
+      {isSubmitSuccessful && <div className="alert alert-success"> Vous etes connecté</div>}
       <TextField 
       id="outlined-basic" 
+      className = "Form__Login__Box__Textfield"
       type="email" 
       required 
       label="Email" 
@@ -50,6 +63,7 @@ export default function FormTest() {
 
       <TextField 
       id="outlined-basic" 
+      className = "Form__Login__Box__Textfield"
       type="password" 
       required 
       label="Mot de Passe" 
@@ -59,7 +73,7 @@ export default function FormTest() {
 
       <span>{errors.password?.message}</span>
 
-      { <button /*disabled={isSubmitting}*/ className="Form__Button" type="submit" >Connexion</button> }
+      { <button className="Form__Button" type="submit" >Connexion</button> }
 
     </Box>
   );

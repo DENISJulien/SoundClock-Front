@@ -2,8 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import FormLogin from './Form/FormLogin';
+import FormTest from './Form/FormTest';
 import './ModalLogin.scss';
+
 
 
 const style = {
@@ -11,7 +12,6 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -26,15 +26,15 @@ export default function ModalLogin() {
   return (
     <div>
       <Button className="Modal__Button__Login" onClick={handleOpen}>Login</Button>
-      <Modal
+      <Modal 
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box className="Modal__Box" sx={style}>
           <h1> Connexion à votre compte </h1>
-          <FormLogin/>
+          <FormTest/>
         </Box>
       </Modal>
     </div>

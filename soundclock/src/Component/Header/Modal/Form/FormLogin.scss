@@ -1,4 +1,11 @@
-.Form__Button{
-    padding: 1rem;
-    color:teal;
+.Form__Login__Box{
+    display: flex;
+    flex-direction: column !important;
+    // align-items: center;
 }
+
+.MuiTextField-root{
+    width: 100% !important;
+    
+}
+
