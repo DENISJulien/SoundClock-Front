@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import axios from 'axios';
 import './FormLogin.scss';
+import { useForm } from 'react-hook-form';
 
 export default function FormLogin() {
 
@@ -15,6 +16,13 @@ export default function FormLogin() {
   // }
 
   const [input, setInput] = useState({})
+
+
+  // const{register} = useForm()
+
+  // const onSubmit = data => {
+  //   console.log(data,"coucou")
+  // }
 
   // formData.append('username',input.username)
   // formData.append('password',input.password)
@@ -59,6 +67,7 @@ export default function FormLogin() {
       value={input.username || ''} 
       onChange={handleChange} 
       name="username"
+      // {...register('username', { required: true })}
       />
 
       <TextField 
@@ -70,17 +79,8 @@ export default function FormLogin() {
       value={input.password || ''} 
       onChange={handleChange} 
       name="password"
+      // {...register('password', { required: true })}
       />
-
-      {/* <TextField
-        error
-        id="outlined-error"
-        type="email" 
-        required 
-        label="Email"
-        variant="outlined"
-        helperText="Un Email est souhaité."
-      /> */}
 
       <button className="Form__Button" type="submit" >Connexion</button>
 
